@@ -89,19 +89,34 @@
 
 
 (defn power [n k]
-  :-)
+  (if (zero? k)
+    1
+    (* n (power n (dec k)))))
 
 (defn fib [n]
-  :-)
+  (if (< n 2)
+    n
+    (+ (fib (- n 1)) (fib (- n 2)))))
 
 (defn my-repeat [how-many-times what-to-repeat]
-  [:-])
+  (if (<= how-many-times 0)
+    '()
+    (cons what-to-repeat
+          (my-repeat (dec how-many-times) what-to-repeat))))
 
 (defn my-range [up-to]
-  [:-])
+  (if (<= up-to 0)
+    '()
+    (let [next-up-to (dec up-to)]
+      (cons next-up-to (my-range next-up-to)))))
 
+;; not working yet
 (defn tails [a-seq]
-  [:-])
+  (if (empty? a-seq)
+    (seq a-seq)
+    (cons (seq a-seq) (tails (rest a-seq)))))
+
+(tails [1 2 3 4]) ;=> ((1 2 3 4) (2 3 4) (3 4) (4) ())
 
 (defn inits [a-seq]
   [:-])
